@@ -1,2 +1,1 @@
-# it-might-end
-It might end.
+# It might end
