@@ -11,6 +11,13 @@ setInterval(() => {
   updateTime();
 }, 1000);
 
+// Custom cursor
+const cursor = document.getElementById("cursor");
+document.addEventListener("mousemove", (e) => {
+  cursor.style.left = e.clientX + "px";
+  cursor.style.top = e.clientY + "px";
+});
+
 // TODO: add end handling
 function updateTime() {
   const currentTime = new Date().getTime();
