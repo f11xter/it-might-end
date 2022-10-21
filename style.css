@@ -1,11 +1,69 @@
-html, body {
+:root {
+  --text: #eee;
+  --bg: #111;
+  --shadow: #aaa;
+  --cursor: #fff;
+  --time: 0.2s;
+}
+
+html,
+body {
   font-family: 'Courier New', Courier, monospace;
   font-size: 1.5em;
-  color: #eee;
-  background-color: #111;
   margin: 0;
+  overflow: hidden;
+}
+
+* {
   cursor: none;
 }
+
+#color-mode {
+  visibility: hidden;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+#color-mode-label {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: var(--text);
+}
+
+#color-mode:checked~* {
+  --text: #111;
+  --bg: #eee;
+  --shadow: #333;
+}
+
+.dark-mode-hide {
+  display: none;
+}
+
+.light-mode-hide {
+  display: initial;
+}
+
+label svg {
+  width: 24px;
+  height: 24px;
+  transition: scale var(--time);
+}
+
+label:hover svg {
+  scale: 1.5;
+}
+
+#color-mode:checked~#color-mode-label>.light-mode-hide {
+  display: none;
+}
+
+#color-mode:checked~#color-mode-label>.dark-mode-hide {
+  display: initial;
+}
+
 
 #container {
   display: flex;
@@ -14,11 +72,13 @@ html, body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  color: var(--text);
+  background-color: var(--bg);
 }
 
 h1 {
   text-align: center;
-  text-shadow: 0.05em 0.05em 0.15em #aaa;
+  text-shadow: 0.05em 0.05em 0.15em var(--shadow);
   margin-top: 0;
 }
 
@@ -28,7 +88,7 @@ p {
 
 span {
   font-weight: bold;
-  text-shadow: 0 0 0.2em #aaa;
+  text-shadow: 0 0 0.2em var(--shadow);
 }
 
 #cursor {
@@ -39,5 +99,12 @@ span {
   width: 32px;
   height: 32px;
   mix-blend-mode: exclusion;
-  fill: #fff;
+  fill: var(--cursor);
+  pointer-events: none;
+  transition: scale var(--time);
+}
+
+#container:has(>h1:hover)~#cursor,
+#color-mode:hover~#cursor {
+  scale: 2;
 }
