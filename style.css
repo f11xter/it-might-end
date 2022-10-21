@@ -74,6 +74,8 @@ label:hover svg {
   height: 100vh;
   color: var(--text);
   background-color: var(--bg);
+  transition-property: color, background-color;
+  transition-duration: var(--time);
 }
 
 h1 {
